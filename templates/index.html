@@ -1,0 +1,42 @@
+{% extends 'master.html' %}
+{% include 'header.html' %}
+
+{% block title %} add Student {% endblock %}
+ 
+{% block body %}
+
+<div class="container">
+    <table class="table">
+        <thead style="background-color: rgb(28, 118, 202);color: aliceblue;">
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Amount Due ($)</th>
+            <th>Actions</th>
+        </thead>
+    
+       <tbody>
+            {% for student in students %}
+            <tr
+            {% if loop.index %2==0 %}
+            style="background-color: rgb(239, 244, 247);"
+            {% else %}
+            style="background-color: rgb(239, 244, 247);"
+            {% endif %}
+            ><td>{{ loop.index }}</td>
+            <td>{{student.first_name}}</td>
+            <td>{{student.last_name}}</td>
+            <td>{{student.date_birth}}</td>
+            <td>{{student.amount_due}}</td>
+
+            <td> <span style="font-size: 24px;color:green;">
+                <a href="/{{student.id}}/edit"> <i class="fas fa-edit"></i></a> </span>
+                    <span style="font-size: 24px;color:red;">  
+                    <a href="/{{student.id}}/delete"> <i class="fas fa-trash-alt"></i></a></span></td>
+            {% endfor %}
+        </tbody>
+    </table>
+               
+</div>
+{% endblock %}
